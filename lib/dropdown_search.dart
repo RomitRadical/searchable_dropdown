@@ -240,6 +240,7 @@ class _DropdownSearchState<T> extends State<DropdownSearch<T>> {
 
   Widget _defaultSelectItemWidget(T data) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         Expanded(
