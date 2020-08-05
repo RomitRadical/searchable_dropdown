@@ -146,6 +146,9 @@ class DropdownSearch<T> extends StatefulWidget {
   /// text aligment for text field
   final TextAlign textAlign;
 
+  /// decoration padding
+  final EdgeInsets contentPadding;
+
   DropdownSearch({
     Key key,
     this.onSaved,
@@ -187,6 +190,7 @@ class DropdownSearch<T> extends StatefulWidget {
     this.popupBarrierColor,
     this.inputBorder = InputBorder.none,
     this.textAlign = TextAlign.center,
+    this.contentPadding,
   })  : assert(autoValidate != null),
         assert(isFilteredOnline != null),
         assert(dropdownBuilderSupportsNullItem != null),
@@ -287,7 +291,7 @@ class _DropdownSearchState<T> extends State<DropdownSearch<T>> {
   InputDecoration _manageDropdownDecoration(FormFieldState state) {
     return (widget.dropdownSearchDecoration ??
             InputDecoration(
-                contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 0),
+                contentPadding: widget.contentPadding,
                 border: widget.inputBorder))
         .applyDefaults(Theme.of(state.context).inputDecorationTheme)
         .copyWith(
