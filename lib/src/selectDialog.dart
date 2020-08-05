@@ -279,6 +279,7 @@ class _SelectDialogState<T> extends State<SelectDialog<T>> {
           widget.itemAsString != null
               ? (widget.itemAsString(item) ?? "")
               : item.toString(),
+          textAlign: TextAlign.center,
         ),
         selected: _manageSelectedItemVisibility(item),
         onTap: widget.itemDisabled != null &&

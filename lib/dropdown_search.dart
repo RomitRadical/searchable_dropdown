@@ -244,15 +244,19 @@ class _DropdownSearchState<T> extends State<DropdownSearch<T>> {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         Expanded(
-          child: widget.dropdownBuilder != null
-              ? widget.dropdownBuilder(
-                  context,
-                  data,
-                  _selectedItemAsString(data),
-                )
-              : Text(_selectedItemAsString(data),
-                  style: Theme.of(context).textTheme.subtitle1),
-        ),
+            child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            widget.dropdownBuilder != null
+                ? widget.dropdownBuilder(
+                    context,
+                    data,
+                    _selectedItemAsString(data),
+                  )
+                : Text(_selectedItemAsString(data),
+                    style: Theme.of(context).textTheme.subtitle1),
+          ],
+        )),
         _manageTrailingIcons(data),
       ],
     );
@@ -322,10 +326,12 @@ class _DropdownSearchState<T> extends State<DropdownSearch<T>> {
       children: <Widget>[
         if (data != null && widget.showClearButton)
           IconButton(
+            hoverColor: Colors.grey[100],
             icon: widget.clearButton ?? const Icon(Icons.clear, size: 24),
             onPressed: () => _handleOnChangeSelectedItem(null),
           ),
         IconButton(
+          hoverColor: Colors.grey[100],
           icon: widget.dropDownButton ??
               const Icon(Icons.arrow_drop_down, size: 24),
           onPressed: () => _selectSearchMode(data),
