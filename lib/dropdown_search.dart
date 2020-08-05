@@ -32,6 +32,9 @@ class DropdownSearch<T> extends StatefulWidget {
   ///DropDownSearch hint
   final String hint;
 
+  ///DropDownSearch hint style
+  final TextStyle hintStyle;
+
   ///show/hide the search box
   final bool showSearchBox;
 
@@ -95,6 +98,9 @@ class DropdownSearch<T> extends StatefulWidget {
   ///dropdownSearch input decoration
   final InputDecoration dropdownSearchDecoration;
 
+  ///dropdownSearch input border
+  final InputBorder inputBorder;
+
   ///custom layout for empty results
   final WidgetBuilder emptyBuilder;
 
@@ -137,6 +143,9 @@ class DropdownSearch<T> extends StatefulWidget {
   ///set a custom color for the popup barrier
   final Color popupBarrierColor;
 
+  /// text aligment for text field
+  final TextAlign textAlign;
+
   DropdownSearch({
     Key key,
     this.onSaved,
@@ -146,6 +155,7 @@ class DropdownSearch<T> extends StatefulWidget {
     this.mode = Mode.DIALOG,
     this.label,
     this.hint,
+    this.hintStyle,
     this.isFilteredOnline = false,
     this.popupTitle,
     this.items,
@@ -175,6 +185,8 @@ class DropdownSearch<T> extends StatefulWidget {
     this.popupShape,
     this.popupItemDisabled,
     this.popupBarrierColor,
+    this.inputBorder = InputBorder.none,
+    this.textAlign = TextAlign.center,
   })  : assert(autoValidate != null),
         assert(isFilteredOnline != null),
         assert(dropdownBuilderSupportsNullItem != null),
@@ -262,6 +274,7 @@ class _DropdownSearchState<T> extends State<DropdownSearch<T>> {
                     (widget.dropdownBuilder == null ||
                         widget.dropdownBuilderSupportsNullItem),
                 isFocused: isFocused,
+                textAlign: widget.textAlign,
                 decoration: _manageDropdownDecoration(state),
                 child: _defaultSelectItemWidget(value),
               );
@@ -275,12 +288,13 @@ class _DropdownSearchState<T> extends State<DropdownSearch<T>> {
     return (widget.dropdownSearchDecoration ??
             InputDecoration(
                 contentPadding: EdgeInsets.fromLTRB(12, 12, 0, 0),
-                border: OutlineInputBorder()))
+                border: widget.inputBorder))
         .applyDefaults(Theme.of(state.context).inputDecorationTheme)
         .copyWith(
             enabled: widget.enabled,
             labelText: widget.label,
             hintText: widget.hint,
+            hintStyle: widget.hintStyle,
             errorText: state.errorText);
   }
 
